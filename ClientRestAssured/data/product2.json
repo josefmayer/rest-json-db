@@ -1,0 +1,11 @@
+{
+  "name":"Passion",
+  "attributes": {
+    "os": "Android Jellybean v4.3",
+    "sim": "Micro-SIM",
+    "body": "6.11 x 3.59 x 0.48 inches",
+    "weight": "145 grams",
+    "display": "4.5 inches",
+    "network": ["GSM", "CDMA", "HSPA"]
+  }
+}

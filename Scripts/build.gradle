@@ -1,0 +1,4 @@
+
+task createTables (type: Exec){
+    commandLine "${projectDir}/databaseCreateTable.sh"
+}

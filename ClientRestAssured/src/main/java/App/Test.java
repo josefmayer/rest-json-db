@@ -26,6 +26,10 @@ public class Test {
         addHotelCity();
 
         addJson();
+
+        addProduct1();
+        addProduct2();
+        addProduct3();
     }
 
     void addCity1(){
@@ -172,4 +176,32 @@ public class Test {
 
     }
 
+    void addProduct1(){
+        given().
+                contentType("application/json").
+                body(new File("data/product1.json")).
+        when().
+                post("/addProduct").
+                then().
+                statusCode(200);
+     }
+
+    void addProduct2(){
+        given().
+                contentType("application/json").
+                body(new File("data/product2.json")).
+                when().
+                post("/addProduct").
+                then().
+                statusCode(200);
+    }
+    void addProduct3(){
+        given().
+                contentType("application/json").
+                body(new File("data/product3.json")).
+                when().
+                post("/addProduct").
+                then().
+                statusCode(200);
+    }
 }

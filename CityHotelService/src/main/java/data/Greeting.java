@@ -1,4 +1,4 @@
-package appRest;
+package data;
 
 public class Greeting {
 

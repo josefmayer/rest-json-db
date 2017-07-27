@@ -1,0 +1,11 @@
+{
+  "name":"Desire",
+  "attributes": {
+    "os": "Android Jellybean v4.3",
+    "sim": "Micro-SIM",
+    "body": "5.11 x 2.59 x 0.48 inches",
+    "weight": "143 grams",
+    "display": "4.5 inches",
+    "network": ["GSM", "CDMA", "HSPA", "EVDO"]
+    }
+}

@@ -1,6 +1,4 @@
-package appRest;
-
-import java.util.Date;
+package data;
 
 public class Json1 {
 

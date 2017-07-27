@@ -95,6 +95,22 @@ public class MySQLClient {
         }
     }
 
+    public void insertProduct(String name, String attributes) {
+        String queryInsert = "INSERT INTO `product` (`id`, `name`,`attributes`) VALUES (NULL, ?, ?);";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement psInsert = conn.prepareStatement(queryInsert)){
+
+            psInsert.setString(1, name);
+            psInsert.setString(2, attributes);
+            psInsert.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
     public List<String> findAllCities() {
         String query = "SELECT jdoc FROM cityJson";
         List<String> resultList = new ArrayList<String>();

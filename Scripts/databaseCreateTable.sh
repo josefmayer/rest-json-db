@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-mysql -uroot -p -e "source create_table.sql;"
+mysql -uroot -proot -e "source create_table.sql;"

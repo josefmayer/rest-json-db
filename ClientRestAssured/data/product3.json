@@ -1,0 +1,11 @@
+{
+  "name":"Emotion",
+  "attributes": {
+    "os": "Android Kitkat v4.3",
+    "sim": "Micro-SIM",
+    "body": "5.50 x 2.50 x 0.50 inches",
+    "weight": "125 grams",
+    "display": "5 inches",
+    "network": ["GSM", "CDMA", "HSPA", "EVDO"]
+  }
+}

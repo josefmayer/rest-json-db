@@ -1,5 +1,7 @@
 package appRest;
 
+import data.*;
+import data.Product.Product;
 import dbClients.MySQLClient;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +83,22 @@ public class Controller {
         }
 
         mySQLClient.insertJson(Json1String);
+    }
+
+
+    @RequestMapping(value = "/addProduct", method = RequestMethod.POST, consumes="application/json", produces="application/json")
+    public void addHotelCity(@RequestBody Product product){
+        ObjectMapper mapper = new ObjectMapper();
+        String attributeString = "";
+        String nameString = "";
+        try {
+            nameString = product.getName();
+            attributeString = mapper.writeValueAsString(product.getAttributes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String name = "passion";
+        mySQLClient.insertProduct(nameString, attributeString);
     }
 
 

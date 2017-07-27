@@ -49,3 +49,6 @@ dependencies {
 
 }
 
+task createTables (type: Exec){
+    commandLine "${projectDir}/scripts/databaseCreateTable.sh"
+}

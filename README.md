@@ -14,6 +14,7 @@ Testing: Rest-assured  <br />
 ### Data Model Rest
 Data types for JSON-serialization: <br />
 CityJson, HotelJson, CityHotelJson <br />
+JSon1, Product  <br />
 
 
 
@@ -21,7 +22,9 @@ CityJson, HotelJson, CityHotelJson <br />
 ##### MySQL
 Start MySQL <br />
 Create database 'json_example' <br />
-Create tables: script databaseCreateTable.sh <br />
+Create tables:  <br />
+script databaseCreateTable.sh <br />
+*gradle createTables* <br />
 
 
 ##### Run Rest Service

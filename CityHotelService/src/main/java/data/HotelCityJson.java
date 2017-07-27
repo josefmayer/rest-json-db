@@ -1,23 +1,23 @@
-package appRest;
+package data;
 
-public class HotelJson {
+public class HotelCityJson {
+    public HotelCityJson(){}
 
-    public HotelJson(){}
-
-    public HotelJson(String cityName, String name, String street, String postcode) {
-        this.cityName = cityName;
+    public HotelCityJson(CityJson cityJson, String name, String street, String postcode) {
+        this.cityJson = cityJson;
         this.name = name;
         this.street = street;
         this.postcode = postcode;
     }
 
-    private String cityName;
+    //private String cityName;
+    private CityJson cityJson;
     private String name;
     private String street;
     private String postcode;
 
-    public String getCityName() {
-        return cityName;
+    public CityJson getCityJson() {
+        return cityJson;
     }
 
     public String getName() {
