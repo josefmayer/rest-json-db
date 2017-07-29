@@ -2,8 +2,11 @@ package appRest;
 
 import data.*;
 import data.Product.Product;
+import dbClients.MSSQLClient;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import dbClients.MySQLClient;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +25,9 @@ public class Controller {
 
 
     @Autowired
-    MySQLClient mySQLClient;
+    MySQLClient dbClient;
+    //MSSQLClient dbClient;
+
 
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
@@ -40,7 +45,7 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mySQLClient.insertCityJson(cityJsonString);
+        dbClient.insertCityJson(cityJsonString);
         return cityJson;
     }
 
@@ -53,7 +58,7 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mySQLClient.insertHotelJson(hotelJsonString);
+        dbClient.insertHotelJson(hotelJsonString);
     }
 
     @RequestMapping(value = "/addHotelCity", method = RequestMethod.POST, consumes="application/json", produces="application/json")
@@ -65,7 +70,7 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mySQLClient.insertHotelCityJson(hotelCityJsonString);
+        dbClient.insertHotelCityJson(hotelCityJsonString);
     }
 
     @RequestMapping(value = "/addJson", method = RequestMethod.POST, consumes="application/json", produces="application/json")
@@ -82,13 +87,15 @@ public class Controller {
             e.printStackTrace();
         }
 
-        mySQLClient.insertJson(Json1String);
+        dbClient.insertJson(Json1String);
     }
 
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST, consumes="application/json", produces="application/json")
     public void addHotelCity(@RequestBody Product product){
         ObjectMapper mapper = new ObjectMapper();
+
+
         String attributeString = "";
         String nameString = "";
         try {
@@ -97,8 +104,7 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String name = "passion";
-        mySQLClient.insertProduct(nameString, attributeString);
+        dbClient.insertProduct(nameString, attributeString);
     }
 
 
@@ -106,7 +112,7 @@ public class Controller {
     public List<CityJson> findAllCities(){
         ObjectMapper mapper = new ObjectMapper();
         List<CityJson> cityJsonList = new ArrayList<CityJson>();
-        List<String> resultList = mySQLClient.findAllCities();
+        List<String> resultList = dbClient.findAllCities();
 
         for (String str : resultList){
             try {
@@ -122,7 +128,7 @@ public class Controller {
     public List<HotelJson> findAllHotels(){
         ObjectMapper mapper = new ObjectMapper();
         List<HotelJson> hotelJsonList = new ArrayList<HotelJson>();
-        List<String> resultList = mySQLClient.findAllHotels();
+        List<String> resultList = dbClient.findAllHotels();
 
         for (String str : resultList){
             try {

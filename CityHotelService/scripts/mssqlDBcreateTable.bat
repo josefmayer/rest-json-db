@@ -1,0 +1,1 @@
+sqlcmd -S JOSEFMAYER-PC\SQLEXPRESS -i scripts\mssql_create_table.sql -b

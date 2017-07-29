@@ -14,19 +14,19 @@ public class Test {
         addCity1();
         addCity2();
         addCity3();
-//        findCityByName();
+////        findCityByName();
         findAllCities();
         addHotel1();
         addHotel2();
         addHotel3();
-//        findHotelByName();
-//
-//        findHotelJsonByName();
-//
+////        findHotelByName();
+////
+////        findHotelJsonByName();
+////
         addHotelCity();
-
+//
         addJson();
-
+//
         addProduct1();
         addProduct2();
         addProduct3();

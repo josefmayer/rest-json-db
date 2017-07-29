@@ -4,6 +4,7 @@ package dbClients;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
@@ -23,16 +24,14 @@ public class MySQLClient {
         return new MySQLClient();
     }
 
-    private final String driverClassName = "com.mysql.jdbc.Driver";
-    private final String url = "jdbc:mysql://localhost:3306/json_example";
-    private final String user = "root";
-    private final String password = "root";
+    @Autowired
+    MySQLConnect mySQLConnect;
+
 
     public void createTable() {
         String query = "CREATE TABLE json1 (id int not null primary key auto_increment, jdoc JSON);";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement ps = conn.prepareStatement(query)){
+        try (PreparedStatement ps = mySQLConnect.connect().prepareStatement(query)){
             ps.execute();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -42,10 +41,11 @@ public class MySQLClient {
     public void insertCityJson(String indocument) {
         String queryInsert = "INSERT INTO `cityJson` (`jdoc`) VALUES (?);";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = mySQLConnect.connect();
              PreparedStatement psInsert = conn.prepareStatement(queryInsert)){
 
             psInsert.setString(1, indocument);
+            //psInsert.setString(1, "jsonString");
             psInsert.execute();
 
         } catch (SQLException ex) {
@@ -56,7 +56,7 @@ public class MySQLClient {
     public void insertHotelJson(String indocument) {
         String queryInsert = "INSERT INTO `hotelJson` (`jdoc`) VALUES (?);";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = mySQLConnect.connect();
              PreparedStatement psInsert = conn.prepareStatement(queryInsert)){
 
             psInsert.setString(1, indocument);
@@ -70,7 +70,7 @@ public class MySQLClient {
     public void insertHotelCityJson(String indocument) {
         String queryInsert = "INSERT INTO `hotelCityJson` (`jdoc`) VALUES (?);";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = mySQLConnect.connect();
              PreparedStatement psInsert = conn.prepareStatement(queryInsert)){
 
             psInsert.setString(1, indocument);
@@ -84,7 +84,7 @@ public class MySQLClient {
     public void insertJson(String indocument) {
         String queryInsert = "INSERT INTO `json1` (`jdoc`) VALUES (?);";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = mySQLConnect.connect();
              PreparedStatement psInsert = conn.prepareStatement(queryInsert)){
 
             psInsert.setString(1, indocument);
@@ -98,7 +98,7 @@ public class MySQLClient {
     public void insertProduct(String name, String attributes) {
         String queryInsert = "INSERT INTO `product` (`id`, `name`,`attributes`) VALUES (NULL, ?, ?);";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = mySQLConnect.connect();
              PreparedStatement psInsert = conn.prepareStatement(queryInsert)){
 
             psInsert.setString(1, name);
@@ -115,7 +115,7 @@ public class MySQLClient {
         String query = "SELECT jdoc FROM cityJson";
         List<String> resultList = new ArrayList<String>();
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = mySQLConnect.connect();
              Statement statement = conn.createStatement();
              ResultSet rs = statement.executeQuery(query)){
 
@@ -132,7 +132,7 @@ public class MySQLClient {
         String query = "SELECT jdoc FROM hotelJson";
         List<String> resultList = new ArrayList<String>();
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = mySQLConnect.connect();
              Statement statement = conn.createStatement();
              ResultSet rs = statement.executeQuery(query)){
 
@@ -190,6 +190,11 @@ public class MySQLClient {
 //        }
 //        return resultList;
 //    }
+
+    private final String driverClassName = "com.mysql.jdbc.Driver";
+    private final String url = "jdbc:mysql://localhost:3306/json_example";
+    private final String user = "root";
+    private final String password = "root";
 
     private DataSource getDataSource(){
         BasicDataSource dataSource = new BasicDataSource();
