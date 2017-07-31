@@ -7,6 +7,7 @@ import dbClients.MSSQLClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dbClients.MySQLClient;
+import dbClients.PostgresClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,9 @@ public class Controller {
 
 
     @Autowired
-    MySQLClient dbClient;
+    //MySQLClient dbClient;
     //MSSQLClient dbClient;
+    PostgresClient dbClient;
 
 
     @RequestMapping("/greeting")

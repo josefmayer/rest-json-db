@@ -7,7 +7,7 @@ Storing data as Json string in database<br />
 ### Technologies
 Application: SpringBoot <br />
 Rest: SpringRest, JSON <br />
-Database: MySQL, MSSQL <br />
+Databases: MySQL, MSSQL, Postgres <br />
 Testing: Rest-assured  <br />
 
 
@@ -32,6 +32,13 @@ Create database 'json_example' <br />
 Create tables:  <br />
 script mssqlDBcreateTable.bat <br />
 *gradle createTablesMSSQL* <br />
+
+##### Postgres
+Start Postgres <br />
+Create database 'json_example' <br />
+Create tables:  <br />
+script postgresCreateTable.bat <br />
+
 
 
 ##### Run Rest Service
